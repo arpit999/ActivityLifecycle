@@ -1,8 +1,11 @@
 package com.hometech.activitylifecycle;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,6 +17,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Log.i(TAG, "onCreate: ");
+    }
+
+    public void OpenDialog(View view) {
+
+        final AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create(); //Read Update
+        alertDialog.setTitle("hi");
+        alertDialog.setMessage("this is my app");
+
+        alertDialog.setButton("Continue..", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // here you can add functions
+                alertDialog.dismiss();
+            }
+        });
+
+        alertDialog.show();  //<-- Show dialog
     }
 
     @Override
@@ -59,6 +78,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         Log.i(TAG, "onRestoreInstanceState: ");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i(TAG, "onDestroy: ");
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.i(TAG, "onBackPressed: ");
     }
 
 }
